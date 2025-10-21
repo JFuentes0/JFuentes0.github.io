@@ -4,65 +4,173 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="top">
   <header class="topbar">
   <nav class="nav">
-    <a href="hello.html">Hello 🤖</a>
-    <a href="travel.html">Travel ⛰️</a>
+    <!-- <a href="hello.html">Hello 🤖</a>
+    <a href="travel.html">Travel ⛰️</a> -->
     <a href="index.html" class="active">Projects</a>
   </nav>
 </header>
 
 
   <main class="container">
-    <h1>projects</h1>
+    <h1>Projects</h1>
 
     <p class="name">Jonathan Fuentes</p>
     <p>
-      <a href="https://github.com/JFuentes0">GitHub</a>
-      &amp;
-      <a href="https://www.linkedin.com/in/jonathan-fuentes0922">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/jonathan-fuentes0922" class="linkedin-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        LinkedIn
+      </a>
     </p>
 
-    <p class="flag">🤖 🚀 🌎 &nbsp; US</p>
+    <p class="flag">US</p>
 
-    <h2>Here are some projects I’ve completed as an Electrical Engineering student:</h2>
+    <h2>Here are some projects I've completed as an Electrical Engineering student at Binghamton University:</h2>
 
     <h3>Table of Contents:</h3>
     <ul class="toc">
-      <li><a href="#colpitts-fpga">Metal Detection System using Colpitts Oscillator &amp; FPGA</a></li>
-      <li><a href="#guitar-matlab">Synthesizing a Guitar Signal w/ MATLAB - Signals &amp; Systems</a></li>
-      <li><a href="#am-radio">AM Radio Receiver with Variable Amplitude Output</a></li>
-      <li><a href="#coord-robot">Coordinate and Object Detection Robot</a></li>
-      <li><a href="#simon-fpga">FPGA Simon Says Game</a></li>
+      <li><a href="#wip">🚧 Work in Progress</a></li>
+      <li><a href="#colpitts-fpga">🔍 Metal Detection System using Colpitts Oscillator &amp; FPGA</a></li>
+      <li><a href="#am-radio">📻 AM Radio Receiver with Variable Amplitude Output</a></li>
     </ul>
 
-    <section id="colpitts-fpga">
-      <h3>Metal Detection System using Colpitts Oscillator &amp; FPGA</h3>
-      <p>Brief description of the design, oscillator math, and FPGA logic. <a href="#">Repo / report</a></p>
+    <section id="wip">
+      <h3>🚧 Work in Progress</h3>
+      <div class="wip-container">
+        <div class="wip-project">
+          <h4>🌊 Smart Micro-Particle Manipulation Chamber</h4>
+          <p>Currently working on my senior design project. My group and I are developing a ferrofluid display! Our project focuses on developing a cutting-edge chamber for studying and manipulating microparticles under magnetic and electric fields. The system will provide a controlled environment for observing and analyzing particle motion. This design will be used by our faculty advisor, Dr. Kaiyan Yu, as a visual aid to her explanations and demonstrations of her research on microfluidic devices.</p>
+          <div class="wip-status">
+            <span class="status-indicator">⚡</span>
+            <span>In Development</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="guitar-matlab">
-      <h3>Synthesizing a Guitar Signal w/ MATLAB - Signals &amp; Systems</h3>
-      <p>Short note on harmonic modeling, envelopes, and filtering. <a href="#">Repo / write-up</a></p>
+    <section id="colpitts-fpga">
+      <h3>🔍 Metal Detection System using Colpitts Oscillator &amp; FPGA</h3>
+      <p><strong>Junior Design Final Project:</strong> Create a metal detection system using off-the-shelf parts. Team consists of two Electrical Engineers (Georges and Jonathan Fuentes (myself)) and three Computer Engineers (Onkar, Ian and Giri).</p>
+      
+      <p><strong>Electrical Engineers:</strong> Built a three-channel analog front end with a 5 V regulator, three Colpitts oscillators each paired with an induction coil, and rectifier and filter stages that turned the RF into a steady voltage for the analog-to-digital converters of the FPGA board. The coils create a magnetic field, and nearby metal disturbs it, which shows up as a change in the DC output. The team modeled the circuit in LTSpice, assembled and labeled the hardware, and handed the Basys3 three clean voltages the code could use to judge position and signal strength.</p>
+      
+      <p><strong>Computer Engineers:</strong> Used memory-mapped GPIO and the XADC Wizard IP to implement the Basys3-side acquisition and display stack in Vitis C. In order to establish baseline voltages while animating the LEDs, a startup calibration procedure repeatedly samples VAUX_6/7/15 and averages the results. In order to determine lateral position (Left, Center-left, Center, Center-right, Right), ADC readings are converted to millivolts, normalized to a 0–10 strength scale per coil with tuned thresholds (40 mV left/center, 20 mV right), and compared in the main loop. Only stable detections are allowed to increase the per-region counters thanks to a debouncing scheme with a 100 ms stability window. In order to connect real-time sensing with clear visual feedback, the team also created an LED bar-graph routine and a multiplexed seven-segment driver (direction symbols plus counters).</p>
+      
+      <p><strong>Team Result:</strong> The system correctly detected 15/15 conductive objects in various combinations of position and distance from magnetic coils during the demonstration. <a href="#" onclick="openPDF('assets/metal-detection/reports/Metal Detector Report (1).pdf')">View Report</a></p>
+      
+      <div class="grid large">
+        <figure>
+          <img src="assets/metal-detection/images/3D-Printed-System.webp" alt="3D printed metal detector system housing" />
+          <figcaption>3D Printed Container</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/metal-detection/images/Full-Physical-System.webp" alt="Complete metal detector system assembly" />
+          <figcaption>Full Physical System</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/metal-detection/images/Labeled-FPGA-Display.webp" alt="FPGA board with labeled connections and display" />
+          <figcaption>Labeled FPGA Display</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/metal-detection/images/Self-Contained-System.webp" alt="Self-contained metal detector unit" />
+          <figcaption>Self Contained System</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/metal-detection/images/Single-Circuit-Schematic.webp" alt="Circuit schematic diagram" />
+          <figcaption>Single Circuit Schematic</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/metal-detection/images/Signals-Visualized.webp" alt="Signal analysis and visualization" />
+          <figcaption>Signals Visualized</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="am-radio">
-      <h3>AM Radio Receiver with Variable Amplitude Output</h3>
-      <p>Front-end, envelope detector, amplification chain, and measured results. <a href="#">Repo / demo</a></p>
-    </section>
-
-    <section id="coord-robot">
-      <h3>Coordinate and Object Detection Robot</h3>
-      <p>Sensor stack, coordinate mapping, and detection pipeline. <a href="#">Repo / video</a></p>
-    </section>
-
-    <section id="simon-fpga">
-      <h3>FPGA Simon Says Game</h3>
-      <p>State machine design, debouncing, and timing on the FPGA board. <a href="#">Repo / docs</a></p>
+      <h3>📻 AM Radio Receiver with Variable Amplitude Output</h3>
+      <p>We built a three-stage AM demodulator: a diode envelope detector, a small RC filter around 1.6 kHz, and a non-inverting OP474 stage set to about 3× gain with 100 kΩ/47 kΩ. For testing we used a 2 kHz carrier and a 100 Hz message from the function generator at 1 Vpp with ~80% modulation, then watched the detector and filter cleanly recover the message on the scope before the amp brought it up. We sketched it in LTSpice, wired it on a breadboard, and drove an 8 Ω speaker; the build worked as planned, with the main future tweak being a small nudge to the RC timing for even cleaner audio. <a href="#" onclick="openPDF('assets/radio-receiver/reports/Electronics Final Report .pdf')">View Report</a></p>
+      
+      <div class="grid large">
+        <figure>
+          <img src="assets/radio-receiver/images/Oscilloscope Output Graph Of Circuit Measurements.webp" alt="Oscilloscope output showing circuit measurements" />
+          <figcaption>Oscilloscope Output Graph Of Circuit Measurements</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/radio-receiver/images/Constructed Circuit.webp" alt="Physically constructed AM radio receiver circuit" />
+          <figcaption>Constructed Circuit</figcaption>
+        </figure>
+        <figure class="large-image">
+          <img src="assets/radio-receiver/images/LTSpice Circuit & Simulation.webp" alt="LTSpice circuit design and simulation" />
+          <figcaption>LTSpice Circuit & Simulation</figcaption>
+        </figure>
+      </div>
     </section>
   </main>
+
+  <p class="back-to-top"><a href="#top">Back to Top</a></p>
+
+  <footer>
+    <p class="footer-name">Jonathan Fuentes</p>
+    <p class="footer-page">Projects</p>
+    <p class="footer-linkedin">
+      <a href="https://www.linkedin.com/in/jonathan-fuentes0922" class="linkedin-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        jonathan-fuentes0922
+      </a>
+    </p>
+  </footer>
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdfModal" class="pdf-modal">
+    <div class="pdf-modal-content">
+      <div class="pdf-modal-header">
+        <h3>Metal Detector Project Report</h3>
+        <span class="pdf-close" onclick="closePDF()">&times;</span>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe id="pdfViewer" src="" width="100%" height="600px" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPDF(pdfPath) {
+      document.getElementById('pdfViewer').src = pdfPath;
+      document.getElementById('pdfModal').style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closePDF() {
+      document.getElementById('pdfModal').style.display = 'none';
+      document.getElementById('pdfViewer').src = ''; // Clear the iframe
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('pdfModal');
+      if (event.target === modal) {
+        closePDF();
+      }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closePDF();
+      }
+    });
+  </script>
 </body>
 </html>
