@@ -9,11 +9,22 @@
   --max-width: 1200px;
 }
 
+[data-theme="light"] {
+  --text: #000000;
+  --text-secondary: #666666;
+  --bg: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --border: #e0e0e0;
+  --accent: #0066ff;
+  --card-bg: #fafafa;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 
 html, body {
   margin: 0;
@@ -28,6 +39,21 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header,
+.profile,
+.featured-card,
+.project-detail,
+.footer,
+.card-content,
+.pdf-modal-content {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Header Navigation */
@@ -39,13 +65,27 @@ body {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .header {
   background: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .nav {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links {
   display: flex;
   gap: 32px;
 }
@@ -76,6 +116,45 @@ body {
   right: 0;
   height: 2px;
   background: var(--text);
+}
+
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-secondary);
+  color: var(--text);
+  border-color: var(--text-secondary);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.theme-icon.moon-icon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon.sun-icon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon.moon-icon {
+  display: block;
 }
 
 /* Container */
@@ -416,8 +495,15 @@ figcaption {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(8px);
+}
+
+[data-theme="dark"] .pdf-modal {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+[data-theme="light"] .pdf-modal {
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .pdf-modal-content {
@@ -429,7 +515,7 @@ figcaption {
   max-width: 1400px;
   height: 95vh;
   max-height: 95vh;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
