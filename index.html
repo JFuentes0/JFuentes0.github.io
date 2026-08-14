@@ -44,7 +44,8 @@
       <div class="profile-content">
         <div class="profile-text">
           <h1>Jonathan Fuentes</h1>
-          <h2>Fourth-Year Electrical Engineering Student at Binghamton University</h2>
+          <h2>M.S. Electrical Engineering Student at Binghamton University</h2>
+          <p class="profile-description">Currently pursuing my M.S. through the 4+1 Accelerated Degree Program (expected May 2027).</p>
         </div>
         <div class="profile-image">
           <img src="assets/profile/profile.jpg" alt="Jonathan Fuentes" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
@@ -69,14 +70,14 @@
               <svg width="100%" height="100%" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="400" height="250" fill="#1e293b"/>
                 <circle cx="200" cy="125" r="40" fill="#334155"/>
-                <text x="200" y="140" text-anchor="middle" fill="#94a3b8" font-size="16" font-family="Inter">WIP</text>
+                <text x="200" y="140" text-anchor="middle" fill="#94a3b8" font-size="16" font-family="Inter">Photo</text>
               </svg>
             </div>
           </div>
           <div class="card-content">
             <h4>Smart Micro-Particle Manipulation Chamber</h4>
-            <p class="card-status-tag">Currently in Development · Senior Design Project</p>
-            <p class="card-description">Developing a ferrofluid display chamber for studying and manipulating microparticles under magnetic and electric fields.</p>
+            <p class="card-status-tag">Completed · Senior Design Project</p>
+            <p class="card-description">Hardware and electrical lead for a 9×9 electromagnet ferrofluid chamber: custom PWM control PCBs, power distribution, and Teensy-based actuation.</p>
             <div class="card-footer">
               <a href="#micro-particle-chamber" class="card-link">View Project →</a>
             </div>
@@ -85,27 +86,28 @@
 
         <article class="featured-card">
           <div class="card-image">
-            <img src="assets/metal-detection/images/Full-Physical-System.webp" alt="Metal Detection System" />
+            <img src="assets/business-card-pcb/images/card-front.webp" alt="NFC smart business card PCB front" style="object-position: top;" />
           </div>
           <div class="card-content">
-            <h4>Metal Detection System using Colpitts Oscillator & FPGA</h4>
-            <p class="card-status-tag">Junior Design Project</p>
-            <p class="card-description">A three-channel metal detection system with analog front end, Colpitts oscillators, and FPGA-based signal processing.</p>
+            <h4>NFC Smart Business Card PCB</h4>
+            <p class="card-status-tag">EECE 531 · Electromagnetic Field Theory</p>
+            <p class="card-description">Credit-card-size passive NFC tag at 13.56 MHz with a planar trace antenna matched to an NXP NTAG NT3H1101 and field-harvested LED.</p>
             <div class="card-footer">
-              <a href="#colpitts-fpga" class="card-link">View Project →</a>
+              <a href="#business-card-pcb" class="card-link">View Project →</a>
             </div>
           </div>
         </article>
 
         <article class="featured-card">
           <div class="card-image">
-            <img src="assets/radio-receiver/images/LTSpice Circuit & Simulation.webp" alt="AM Radio Receiver LTSpice Simulation" />
+            <img src="assets/bldc-motor/images/assembled-motor.webp" alt="3D-printed brushless DC motor on the bench" style="object-position: center;" />
           </div>
           <div class="card-content">
-            <h4>AM Radio Receiver with Variable Amplitude Output</h4>
-            <p class="card-description">Three-stage AM demodulator with diode envelope detector, RC filter, and OP474 amplification stage. Successfully recovered audio signals from AM modulation.</p>
+            <h4>Three-Phase Brushless DC Motor</h4>
+            <p class="card-status-tag">Personal Hardware Project</p>
+            <p class="card-description">Fusion 360 rotor and stator, 3D-printed and assembled with neodymium magnets and a 12-coil, three-phase winding driven by a BLDC speed controller.</p>
             <div class="card-footer">
-              <a href="#am-radio" class="card-link">View Project →</a>
+              <a href="#bldc-motor" class="card-link">View Project →</a>
             </div>
           </div>
         </article>
@@ -116,41 +118,101 @@
       <h3>All Projects</h3>
 
       <article id="micro-particle-chamber" class="project-detail">
-        <h4>🌊 Smart Micro-Particle Manipulation Chamber</h4>
-        <p>Currently working on my senior design project. My group and I are developing a ferrofluid display! Our project focuses on developing a cutting-edge chamber for studying and manipulating microparticles under magnetic and electric fields. The system will provide a controlled environment for observing and analyzing particle motion. This design will be used by our faculty advisor, Dr. Kaiyan Yu, as a visual aid to her explanations and demonstrations of her research on microfluidic devices.</p>
-        
-        <div class="wip-status" style="margin: 20px 0; padding: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
-          <span style="font-size: 20px;">⚡</span>
-          <span style="color: var(--accent); font-weight: 500;">In Development</span>
-        </div>
-        
+        <h4>Smart Micro-Particle Manipulation Chamber</h4>
+        <p><strong>Senior Design (ME SDP 115), completed May 2026.</strong> Team project for Dr. Kaiyan Yu: a macroscopic ferrofluid chamber that demonstrates how microparticles move under electromagnetic fields. I owned the entire hardware and electrical stack — power, magnet drive, PCB design, and microcontroller actuation — while teammates handled housing, tank chemistry, and the tablet UI.</p>
+
+        <p>The previous year’s 7×7 prototype could not lift ferrofluid above the first row of magnets. This year’s system uses an 81-magnet 9×9 array of 12 V JSP-1515 electromagnets behind a thinner glass tank so the fluid sits closer to the field. A tablet draws a pattern; a Raspberry Pi 5 forwards it to a Teensy 4.1, which PWM-drives each magnet so the ferrofluid can move both vertically and horizontally.</p>
+
+        <p><strong>Electrical design:</strong> Nine row-control PCBs, each with a PCA9685 PWM driver and ULN2803 Darlington array, addressable over I²C at <code>0x41</code>–<code>0x49</code> via solder-jumper bits. A separate power-distribution board takes a MEAN WELL LRS-350-12 (12 V / 29 A) supply, fans 12 V out to the nine row boards (16.2 A design max), and steps down 5 V with a TSR 1-2450 for the Teensy and Pi. JST-VH connectors carry the 12 V rails with margin above the 1.8 A per-row load.</p>
+
+        <p><a href="#" onclick="openPDF('assets/micro-particle-chamber/reports/ME SDP 115 Project Report.pdf', 'Smart Micro-Particle Manipulation Chamber Report'); return false;">View Report</a></p>
+
         <div class="grid large">
           <figure>
             <img src="assets/micro-particle-chamber/images/chamber-main.webp" alt="Ferrofluid demonstration showing magnetic manipulation of particles" />
-            <figcaption>Ferrofluid Demonstration - Magnetic Field Manipulation</figcaption>
-          </figure>
-          <!-- Add more images here as you get them:
-          <figure>
-            <img src="assets/micro-particle-chamber/images/chamber-design.webp" alt="Chamber design schematic" />
-            <figcaption>Chamber Design</figcaption>
+            <figcaption>Ferrofluid demonstration — magnetic field manipulation</figcaption>
           </figure>
           <figure>
-            <img src="assets/micro-particle-chamber/images/control-system.webp" alt="Control system interface" />
-            <figcaption>Control System</figcaption>
+            <img src="assets/micro-particle-chamber/images/tablet-ui.webp" alt="Tablet UI 9x9 electromagnet pattern grid" />
+            <figcaption>Tablet UI — 9×9 pattern grid</figcaption>
           </figure>
-          -->
+          <figure>
+            <img src="assets/micro-particle-chamber/images/electromagnet-control-schematic.webp" alt="Electromagnet row-control PCB schematic" />
+            <figcaption>Electromagnet control PCB schematic</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/micro-particle-chamber/images/power-distribution-layout.webp" alt="Power distribution PCB layout" />
+            <figcaption>Power distribution PCB layout</figcaption>
+          </figure>
         </div>
       </article>
 
+      <article id="business-card-pcb" class="project-detail">
+        <h4>NFC Smart Business Card PCB</h4>
+        <p><strong>EECE 531 Electromagnetic Field Theory final project.</strong> A passive NFC business card in CR80 credit-card dimensions: no battery, 13.56 MHz inductive coupling to a phone, LinkedIn (and contact info) on tap, plus an LED powered by energy harvested from the reader field.</p>
+
+        <p>The antenna is a 5-turn rectangular planar trace on 0.8 mm FR4, sized so its inductance lands on the NXP NTAG NT3H1101’s 50 pF on-chip capacitance. The LC target is about 2.75 μH at 13.56 MHz; the layout (Wheeler estimate with <em>w</em> = <em>g</em> = 0.3 mm) comes in at ~2.76 μH. Copper keepouts around the loop keep eddy currents from killing the coupling. Contact text is exposed ENIG through solder-mask apertures so the gold finish is the lettering.</p>
+
+        <p>The harvested rail feeds VCC through a 220 nF hold-up cap and a 47 Ω limiter into an 0805 LED. The board was fabricated and assembled as a working tag.</p>
+
+        <p><a href="#" onclick="openPDF('assets/business-card-pcb/reports/Electromagnetic_Field_Theory_Final_Project_Report.pdf', 'NFC Smart Business Card PCB Report'); return false;">View Report</a></p>
+
+        <div class="grid large">
+          <figure>
+            <img src="assets/business-card-pcb/images/card-front.webp" alt="NFC business card PCB front with contact information" />
+            <figcaption>Front — contact text in ENIG</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/business-card-pcb/images/card-back.webp" alt="NFC business card PCB back with trace antenna motif" />
+            <figcaption>Back — antenna and energy-harvest LED motif</figcaption>
+          </figure>
+          <figure class="large-image">
+            <img src="assets/business-card-pcb/images/schematic.webp" alt="NFC business card schematic" />
+            <figcaption>Schematic — NT3H1101, 13.56 MHz antenna, harvested LED</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article id="bldc-motor" class="project-detail">
+        <h4>Three-Phase Brushless DC Motor</h4>
+        <p>Personal hardware build: design a small outer-rotor BLDC from CAD through a spinning prototype. I modeled the rotor, stator, stator base, and base ring in Fusion 360, exported STLs, and had the parts printed at Binghamton’s MakerLab.</p>
+
+        <p>The rotor carries neodymium magnets in pockets around the inner rim. The stator has 12 coils — four per phase (A, B, C) — so a rotating field from a three-phase brushless speed-controller board spins the magnet ring. Assembly was glue, magnet polarity, winding, and bringing it up on the bench with the controller.</p>
+
+        <div class="grid large">
+          <figure>
+            <img src="assets/bldc-motor/images/cad-assembly.webp" alt="Fusion 360 CAD of BLDC rotor, stator, and base" />
+            <figcaption>Fusion 360 assembly — rotor, stator, and base</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bldc-motor/images/rotor-magnets.webp" alt="3D-printed rotor with neodymium magnets being installed" />
+            <figcaption>Rotor — neodymium magnets in the printed rim</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bldc-motor/images/assembled-motor.webp" alt="Assembled 3D-printed BLDC motor with three-phase controller" />
+            <figcaption>Assembled motor on the bench with the speed controller</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article id="pjm-forecasting" class="project-detail">
+        <h4>Extreme-Weather Load Forecasting for PJM</h4>
+        <p><strong>EECE 529 course project.</strong> Short-term load forecasting usually looks fine on average and then falls apart in rare cold-weather peaks. This study compared a 24-hour persistence baseline, linear regression, random forest, and XGBoost on hourly PJM Mon Power / FirstEnergy zone load merged with NOAA ASOS weather from Morgantown (KMGW), held out over Winter Storm Fern (January 2026).</p>
+
+        <p>Random Forest won in aggregate (3.33% MAPE, 324.4 MW RMSE), but that advantage sits in nominal and ramp-up hours. During the storm peak, persistence was the most accurate model (1.34% MAPE). Tree ensembles were failing out of distribution — the same pattern that motivates phase-aware, regime-specific forecasting rather than one model fit across the whole storm window.</p>
+
+        <p><a href="#" onclick="openPDF('assets/pjm-forecasting/reports/EECE 529 Final Project Report.pdf', 'EECE 529 Extreme-Weather Load Forecasting Report'); return false;">View Report</a></p>
+      </article>
+
       <article id="colpitts-fpga" class="project-detail">
-        <h4>🔍 Metal Detection System using Colpitts Oscillator &amp; FPGA</h4>
+        <h4>Metal Detection System using Colpitts Oscillator &amp; FPGA</h4>
         <p><strong>Junior Design Final Project:</strong> Create a metal detection system using off-the-shelf parts. Team consists of two Electrical Engineers (Georges and Jonathan Fuentes (myself)) and three Computer Engineers (Onkar, Ian and Giri).</p>
         
         <p><strong>Electrical Engineers:</strong> Built a three-channel analog front end with a 5 V regulator, three Colpitts oscillators each paired with an induction coil, and rectifier and filter stages that turned the RF into a steady voltage for the analog-to-digital converters of the FPGA board. The coils create a magnetic field, and nearby metal disturbs it, which shows up as a change in the DC output. The team modeled the circuit in LTSpice, assembled and labeled the hardware, and handed the Basys3 three clean voltages the code could use to judge position and signal strength.</p>
         
         <p><strong>Computer Engineers:</strong> Used memory-mapped GPIO and the XADC Wizard IP to implement the Basys3-side acquisition and display stack in Vitis C. In order to establish baseline voltages while animating the LEDs, a startup calibration procedure repeatedly samples VAUX_6/7/15 and averages the results. In order to determine lateral position (Left, Center-left, Center, Center-right, Right), ADC readings are converted to millivolts, normalized to a 0–10 strength scale per coil with tuned thresholds (40 mV left/center, 20 mV right), and compared in the main loop. Only stable detections are allowed to increase the per-region counters thanks to a debouncing scheme with a 100 ms stability window. In order to connect real-time sensing with clear visual feedback, the team also created an LED bar-graph routine and a multiplexed seven-segment driver (direction symbols plus counters).</p>
         
-        <p><strong>Team Result:</strong> The system correctly detected 15/15 conductive objects in various combinations of position and distance from magnetic coils during the demonstration. <a href="#" onclick="openPDF('assets/metal-detection/reports/Metal Detector Report (1).pdf')">View Report</a></p>
+        <p><strong>Team Result:</strong> The system correctly detected 15/15 conductive objects in various combinations of position and distance from magnetic coils during the demonstration. <a href="#" onclick="openPDF('assets/metal-detection/reports/Metal Detector Report (1).pdf', 'Metal Detector Project Report'); return false;">View Report</a></p>
         
         <div class="grid large">
           <figure>
@@ -181,8 +243,8 @@
       </article>
 
       <article id="am-radio" class="project-detail">
-        <h4>📻 AM Radio Receiver with Variable Amplitude Output</h4>
-        <p>We built a three-stage AM demodulator: a diode envelope detector, a small RC filter around 1.6 kHz, and a non-inverting OP474 stage set to about 3× gain with 100 kΩ/47 kΩ. For testing we used a 2 kHz carrier and a 100 Hz message from the function generator at 1 Vpp with ~80% modulation, then watched the detector and filter cleanly recover the message on the scope before the amp brought it up. We sketched it in LTSpice, wired it on a breadboard, and drove an 8 Ω speaker; the build worked as planned, with the main future tweak being a small nudge to the RC timing for even cleaner audio. <a href="#" onclick="openPDF('assets/radio-receiver/reports/Electronics Final Report .pdf')">View Report</a></p>
+        <h4>AM Radio Receiver with Variable Amplitude Output</h4>
+        <p>We built a three-stage AM demodulator: a diode envelope detector, a small RC filter around 1.6 kHz, and a non-inverting OP474 stage set to about 3× gain with 100 kΩ/47 kΩ. For testing we used a 2 kHz carrier and a 100 Hz message from the function generator at 1 Vpp with ~80% modulation, then watched the detector and filter cleanly recover the message on the scope before the amp brought it up. We sketched it in LTSpice, wired it on a breadboard, and drove an 8 Ω speaker; the build worked as planned, with the main future tweak being a small nudge to the RC timing for even cleaner audio. <a href="#" onclick="openPDF('assets/radio-receiver/reports/Electronics Final Report .pdf', 'AM Radio Receiver Report'); return false;">View Report</a></p>
         
         <div class="grid large">
           <figure>
@@ -223,7 +285,7 @@
   <div id="pdfModal" class="pdf-modal">
     <div class="pdf-modal-content">
       <div class="pdf-modal-header">
-        <h3>Metal Detector Project Report</h3>
+        <h3 id="pdfModalTitle">Project Report</h3>
         <span class="pdf-close" onclick="closePDF()">&times;</span>
       </div>
       <div class="pdf-modal-body">
@@ -233,8 +295,9 @@
   </div>
 
   <script>
-    function openPDF(pdfPath) {
+    function openPDF(pdfPath, title) {
       document.getElementById('pdfViewer').src = pdfPath;
+      document.getElementById('pdfModalTitle').textContent = title || 'Project Report';
       document.getElementById('pdfModal').style.display = 'block';
       document.body.style.overflow = 'hidden';
     }
