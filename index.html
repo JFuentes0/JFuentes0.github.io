@@ -90,7 +90,7 @@
           </div>
           <div class="card-content">
             <h4>Smart Micro-Particle Manipulation Chamber</h4>
-            <p class="card-status-tag">Completed · Senior Design Project</p>
+            <p class="card-status-tag">Senior Design Project</p>
             <p class="card-description">Hardware and electrical lead for a 9×9 electromagnet ferrofluid chamber: custom PWM control PCBs, power distribution, and Teensy-based actuation.</p>
             <div class="card-footer">
               <a href="#micro-particle-chamber" class="card-link">View Project →</a>
@@ -108,20 +108,6 @@
             <p class="card-description">Credit-card-size passive NFC tag at 13.56 MHz with a planar trace antenna matched to an NXP NTAG NT3H1101 and field-harvested LED.</p>
             <div class="card-footer">
               <a href="#business-card-pcb" class="card-link">View Project →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="featured-card">
-          <div class="card-image">
-            <img src="assets/bldc-motor/images/assembled-motor.webp" alt="3D-printed brushless DC motor on the bench" style="object-position: center;" />
-          </div>
-          <div class="card-content">
-            <h4>Three-Phase Brushless DC Motor</h4>
-            <p class="card-status-tag">Personal Hardware Project</p>
-            <p class="card-description">Fusion 360 rotor and stator, 3D-printed and assembled with neodymium magnets and a 12-coil, three-phase winding driven by a BLDC speed controller.</p>
-            <div class="card-footer">
-              <a href="#bldc-motor" class="card-link">View Project →</a>
             </div>
           </div>
         </article>
@@ -195,6 +181,10 @@
             <figcaption>Electromagnet control PCB layout</figcaption>
           </figure>
           <figure>
+            <img src="assets/micro-particle-chamber/images/power-distribution-schematic.webp" alt="Power distribution PCB schematic" />
+            <figcaption>Power distribution PCB schematic</figcaption>
+          </figure>
+          <figure>
             <img src="assets/micro-particle-chamber/images/power-distribution-layout.webp" alt="Power distribution PCB layout" />
             <figcaption>Power distribution PCB layout</figcaption>
           </figure>
@@ -263,6 +253,21 @@
         <p>Random Forest won in aggregate (3.33% MAPE, 324.4 MW RMSE), but that advantage sits in nominal and ramp-up hours. During the storm peak, persistence was the most accurate model (1.34% MAPE). Tree ensembles were failing out of distribution. That pattern is why phase-aware, regime-specific forecasting is a better fit than one model across the whole storm window.</p>
 
         <p><a href="#" onclick="openPDF('assets/pjm-forecasting/reports/EECE 529 Final Project Report.pdf', 'EECE 529 Extreme-Weather Load Forecasting Report'); return false;">View Report</a></p>
+
+        <div class="grid large">
+          <figure class="large-image">
+            <img src="assets/pjm-forecasting/images/forecast-timeseries.webp" alt="Mon Power zone hourly load versus four forecast models during Winter Storm Fern" />
+            <figcaption>Hourly load during Winter Storm Fern compared with four models</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/pjm-forecasting/images/mape-by-phase.webp" alt="MAPE by storm phase for persistence, linear regression, random forest, and XGBoost" />
+            <figcaption>MAPE by storm phase and model</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/pjm-forecasting/images/forecast-residuals.webp" alt="Forecast residuals during Winter Storm Fern" />
+            <figcaption>Forecast residuals during the storm-peak window</figcaption>
+          </figure>
+        </div>
       </article>
 
       <article id="colpitts-fpga" class="project-detail">
