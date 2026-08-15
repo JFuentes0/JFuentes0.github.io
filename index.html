@@ -352,6 +352,12 @@
     </div>
   </footer>
 
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
   <!-- PDF Viewer Modal -->
   <div id="pdfModal" class="pdf-modal">
     <div class="pdf-modal-content">
@@ -422,6 +428,21 @@
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
       updateThemeIcon(newTheme);
+    });
+
+    const backToTop = document.getElementById('backToTop');
+    const showAfter = 400;
+
+    function updateBackToTop() {
+      backToTop.classList.toggle('visible', window.scrollY > showAfter);
+    }
+
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
+
+    backToTop.addEventListener('click', function() {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   </script>
 </body>

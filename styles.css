@@ -157,6 +157,49 @@ body {
   display: block;
 }
 
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-secondary);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.back-to-top:hover {
+  background: var(--bg-secondary);
+  color: var(--text);
+  border-color: var(--text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Container */
 .container {
   max-width: var(--max-width);
@@ -682,5 +725,10 @@ figcaption {
 
   .nav {
     padding: 0 16px;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
   }
 }
