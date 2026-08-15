@@ -65,6 +65,20 @@
       <div class="featured-grid">
         <article class="featured-card">
           <div class="card-image">
+            <img src="assets/suli-forecasting/images/uri-day.webp" alt="ERCOT load forecast versus actual demand during Winter Storm Uri" />
+          </div>
+          <div class="card-content">
+            <h4>Advancing Frontiers of Energy Forecasting with Novel Methods</h4>
+            <p class="card-status-tag">NETL SULI · Summer 2026</p>
+            <p class="card-description">Probabilistic extreme-load forecasting on ERCOT with Adaptive Conditional Neural Processes. AdaCNP improved likelihood versus a CNP baseline, but both models were overconfident in the cold.</p>
+            <div class="card-footer">
+              <a href="#suli-forecasting" class="card-link">View Project →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="card-image">
             <img src="assets/micro-particle-chamber/images/chamber-main.webp" alt="Ferrofluid demonstration with magnetic manipulation" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
             <div class="card-image-placeholder" style="display: none;">
               <svg width="100%" height="100%" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,28 +131,68 @@
     <section class="projects-section">
       <h3>All Projects</h3>
 
+      <article id="suli-forecasting" class="project-detail">
+        <h4>Advancing Frontiers of Energy Forecasting with Novel Methods</h4>
+        <p><strong>DOE SULI internship at NETL, Summer 2026.</strong> Mentor: John Brewer. Day-ahead load forecasts are often least reliable during extreme weather, which is when operators most need trustworthy uncertainty. This project tested whether Adaptive Conditional Neural Processes (AdaCNP) improve extreme-load forecasting over a standard Conditional Neural Process on hourly ERCOT load from 2002 to 2026.</p>
+
+        <p>Evaluation used leave-one-event-out across 17 extreme cold events, with seven-day exclusion buffers, a 9:00 a.m. CT issuance cutoff, and documented load-shed hours removed from the primary metric. The pre-registered comparison found an AdaCNP advantage in Gaussian negative log likelihood (mean paired difference 0.459, 95% CI [0.108, 0.811], p = 0.014). The effect sat slightly below the study's minimum detectable effect and appeared only in the pre-registered configuration.</p>
+
+        <p>The operational result was calibration. A nominal 90% interval covered 96% of normal-period hours but only 63% of held-out extreme-event hours. Both models systematically underforecast demand while reporting high confidence, and coverage worsened as events got colder. That points to extreme-event calibration as a higher priority than further architecture comparison.</p>
+
+        <p>Views are my own and do not necessarily reflect those of the U.S. Department of Energy or NETL. <a href="#" onclick="openPDF('assets/suli-forecasting/reports/SULI_Final_Report.pdf', 'SULI Final Report'); return false;">View Report</a> · <a href="#" onclick="openPDF('assets/suli-forecasting/reports/SULI_Presentation_2026.pdf', 'SULI Presentation'); return false;">View Presentation</a></p>
+
+        <figure>
+          <div class="project-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/RZhZRxwJHTo?start=875" title="SULI Technical Forum Summer 2026" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption>SULI Technical Forum, Summer 2026 (starts at 14:35)</figcaption>
+        </figure>
+
+        <div class="grid large">
+          <figure>
+            <img src="assets/suli-forecasting/images/calibration.webp" alt="Reliability diagram comparing predicted probability to observed frequency" />
+            <figcaption>Reliability: 90% interval covers 96% of normal hours and 63% of extreme hours</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/suli-forecasting/images/uri-day.webp" alt="February 18, 2021 ERCOT load versus 90 percent prediction interval" />
+            <figcaption>February 18, 2021: all 24 hours fell outside the 90% interval</figcaption>
+          </figure>
+        </div>
+      </article>
+
       <article id="micro-particle-chamber" class="project-detail">
         <h4>Smart Micro-Particle Manipulation Chamber</h4>
-        <p><strong>Senior Design (ME SDP 115), completed May 2026.</strong> Team project for Dr. Kaiyan Yu: a macroscopic ferrofluid chamber that demonstrates how microparticles move under electromagnetic fields. I owned the entire hardware and electrical stack — power, magnet drive, PCB design, and microcontroller actuation — while teammates handled housing, tank chemistry, and the tablet UI.</p>
+        <p><strong>Senior Design (ME SDP 115), completed May 2026.</strong> Team project for Dr. Kaiyan Yu: a macroscopic ferrofluid chamber that demonstrates how microparticles move under electromagnetic fields. I owned the entire hardware and electrical stack (power, magnet drive, PCB design, and microcontroller actuation). Teammates handled housing, tank chemistry, and the tablet UI.</p>
 
         <p>The previous year’s 7×7 prototype could not lift ferrofluid above the first row of magnets. This year’s system uses an 81-magnet 9×9 array of 12 V JSP-1515 electromagnets behind a thinner glass tank so the fluid sits closer to the field. A tablet draws a pattern; a Raspberry Pi 5 forwards it to a Teensy 4.1, which PWM-drives each magnet so the ferrofluid can move both vertically and horizontally.</p>
 
-        <p><strong>Electrical design:</strong> Nine row-control PCBs, each with a PCA9685 PWM driver and ULN2803 Darlington array, addressable over I²C at <code>0x41</code>–<code>0x49</code> via solder-jumper bits. A separate power-distribution board takes a MEAN WELL LRS-350-12 (12 V / 29 A) supply, fans 12 V out to the nine row boards (16.2 A design max), and steps down 5 V with a TSR 1-2450 for the Teensy and Pi. JST-VH connectors carry the 12 V rails with margin above the 1.8 A per-row load.</p>
+        <p><strong>Electrical design:</strong> Nine row-control PCBs, each with a PCA9685 PWM driver and ULN2803 Darlington array, addressable over I²C at <code>0x41</code> to <code>0x49</code> via solder-jumper bits. A separate power-distribution board takes a MEAN WELL LRS-350-12 (12 V / 29 A) supply, fans 12 V out to the nine row boards (16.2 A design max), and steps down 5 V with a TSR 1-2450 for the Teensy and Pi. JST-VH connectors carry the 12 V rails with margin above the 1.8 A per-row load.</p>
 
         <p><a href="#" onclick="openPDF('assets/micro-particle-chamber/reports/ME SDP 115 Project Report.pdf', 'Smart Micro-Particle Manipulation Chamber Report'); return false;">View Report</a></p>
+
+        <figure>
+          <div class="project-video vertical">
+            <iframe src="https://www.youtube-nocookie.com/embed/TmuSpKSt_tw" title="Smart Micro-Particle Manipulation Chamber demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption>Chamber demonstration</figcaption>
+        </figure>
 
         <div class="grid large">
           <figure>
             <img src="assets/micro-particle-chamber/images/chamber-main.webp" alt="Ferrofluid demonstration showing magnetic manipulation of particles" />
-            <figcaption>Ferrofluid demonstration — magnetic field manipulation</figcaption>
+            <figcaption>Ferrofluid demonstration: magnetic field manipulation</figcaption>
           </figure>
           <figure>
             <img src="assets/micro-particle-chamber/images/tablet-ui.webp" alt="Tablet UI 9x9 electromagnet pattern grid" />
-            <figcaption>Tablet UI — 9×9 pattern grid</figcaption>
+            <figcaption>Tablet UI, 9×9 pattern grid</figcaption>
           </figure>
           <figure>
             <img src="assets/micro-particle-chamber/images/electromagnet-control-schematic.webp" alt="Electromagnet row-control PCB schematic" />
             <figcaption>Electromagnet control PCB schematic</figcaption>
+          </figure>
+          <figure class="large-image">
+            <img src="assets/micro-particle-chamber/images/electromagnet-control-layout.webp" alt="Electromagnet control PCB board layout" />
+            <figcaption>Electromagnet control PCB layout</figcaption>
           </figure>
           <figure>
             <img src="assets/micro-particle-chamber/images/power-distribution-layout.webp" alt="Power distribution PCB layout" />
@@ -160,15 +214,15 @@
         <div class="grid large">
           <figure>
             <img src="assets/business-card-pcb/images/card-front.webp" alt="NFC business card PCB front with contact information" />
-            <figcaption>Front — contact text in ENIG</figcaption>
+            <figcaption>Front: contact text in ENIG</figcaption>
           </figure>
           <figure>
             <img src="assets/business-card-pcb/images/card-back.webp" alt="NFC business card PCB back with trace antenna motif" />
-            <figcaption>Back — antenna and energy-harvest LED motif</figcaption>
+            <figcaption>Back: antenna and energy-harvest LED motif</figcaption>
           </figure>
           <figure class="large-image">
             <img src="assets/business-card-pcb/images/schematic.webp" alt="NFC business card schematic" />
-            <figcaption>Schematic — NT3H1101, 13.56 MHz antenna, harvested LED</figcaption>
+            <figcaption>Schematic: NT3H1101, 13.56 MHz antenna, harvested LED</figcaption>
           </figure>
         </div>
       </article>
@@ -177,16 +231,23 @@
         <h4>Three-Phase Brushless DC Motor</h4>
         <p>Personal hardware build: design a small outer-rotor BLDC from CAD through a spinning prototype. I modeled the rotor, stator, stator base, and base ring in Fusion 360, exported STLs, and had the parts printed at Binghamton’s MakerLab.</p>
 
-        <p>The rotor carries neodymium magnets in pockets around the inner rim. The stator has 12 coils — four per phase (A, B, C) — so a rotating field from a three-phase brushless speed-controller board spins the magnet ring. Assembly was glue, magnet polarity, winding, and bringing it up on the bench with the controller.</p>
+        <p>The rotor carries neodymium magnets in pockets around the inner rim. The stator has 12 coils, four per phase (A, B, C), so a rotating field from a three-phase brushless speed-controller board spins the magnet ring. Assembly was glue, magnet polarity, winding, and bringing it up on the bench with the controller.</p>
+
+        <figure>
+          <div class="project-video vertical">
+            <iframe src="https://www.youtube-nocookie.com/embed/-ZnzT7ssaxc" title="Brushless DC motor demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption>Motor demonstration</figcaption>
+        </figure>
 
         <div class="grid large">
           <figure>
             <img src="assets/bldc-motor/images/cad-assembly.webp" alt="Fusion 360 CAD of BLDC rotor, stator, and base" />
-            <figcaption>Fusion 360 assembly — rotor, stator, and base</figcaption>
+            <figcaption>Fusion 360 assembly: rotor, stator, and base</figcaption>
           </figure>
           <figure>
             <img src="assets/bldc-motor/images/rotor-magnets.webp" alt="3D-printed rotor with neodymium magnets being installed" />
-            <figcaption>Rotor — neodymium magnets in the printed rim</figcaption>
+            <figcaption>Rotor: neodymium magnets in the printed rim</figcaption>
           </figure>
           <figure>
             <img src="assets/bldc-motor/images/assembled-motor.webp" alt="Assembled 3D-printed BLDC motor with three-phase controller" />
@@ -199,7 +260,7 @@
         <h4>Extreme-Weather Load Forecasting for PJM</h4>
         <p><strong>EECE 529 course project.</strong> Short-term load forecasting usually looks fine on average and then falls apart in rare cold-weather peaks. This study compared a 24-hour persistence baseline, linear regression, random forest, and XGBoost on hourly PJM Mon Power / FirstEnergy zone load merged with NOAA ASOS weather from Morgantown (KMGW), held out over Winter Storm Fern (January 2026).</p>
 
-        <p>Random Forest won in aggregate (3.33% MAPE, 324.4 MW RMSE), but that advantage sits in nominal and ramp-up hours. During the storm peak, persistence was the most accurate model (1.34% MAPE). Tree ensembles were failing out of distribution — the same pattern that motivates phase-aware, regime-specific forecasting rather than one model fit across the whole storm window.</p>
+        <p>Random Forest won in aggregate (3.33% MAPE, 324.4 MW RMSE), but that advantage sits in nominal and ramp-up hours. During the storm peak, persistence was the most accurate model (1.34% MAPE). Tree ensembles were failing out of distribution. That pattern is why phase-aware, regime-specific forecasting is a better fit than one model across the whole storm window.</p>
 
         <p><a href="#" onclick="openPDF('assets/pjm-forecasting/reports/EECE 529 Final Project Report.pdf', 'EECE 529 Extreme-Weather Load Forecasting Report'); return false;">View Report</a></p>
       </article>
@@ -210,7 +271,7 @@
         
         <p><strong>Electrical Engineers:</strong> Built a three-channel analog front end with a 5 V regulator, three Colpitts oscillators each paired with an induction coil, and rectifier and filter stages that turned the RF into a steady voltage for the analog-to-digital converters of the FPGA board. The coils create a magnetic field, and nearby metal disturbs it, which shows up as a change in the DC output. The team modeled the circuit in LTSpice, assembled and labeled the hardware, and handed the Basys3 three clean voltages the code could use to judge position and signal strength.</p>
         
-        <p><strong>Computer Engineers:</strong> Used memory-mapped GPIO and the XADC Wizard IP to implement the Basys3-side acquisition and display stack in Vitis C. In order to establish baseline voltages while animating the LEDs, a startup calibration procedure repeatedly samples VAUX_6/7/15 and averages the results. In order to determine lateral position (Left, Center-left, Center, Center-right, Right), ADC readings are converted to millivolts, normalized to a 0–10 strength scale per coil with tuned thresholds (40 mV left/center, 20 mV right), and compared in the main loop. Only stable detections are allowed to increase the per-region counters thanks to a debouncing scheme with a 100 ms stability window. In order to connect real-time sensing with clear visual feedback, the team also created an LED bar-graph routine and a multiplexed seven-segment driver (direction symbols plus counters).</p>
+        <p><strong>Computer Engineers:</strong> Used memory-mapped GPIO and the XADC Wizard IP to implement the Basys3-side acquisition and display stack in Vitis C. In order to establish baseline voltages while animating the LEDs, a startup calibration procedure repeatedly samples VAUX_6/7/15 and averages the results. In order to determine lateral position (Left, Center-left, Center, Center-right, Right), ADC readings are converted to millivolts, normalized to a 0 to 10 strength scale per coil with tuned thresholds (40 mV left/center, 20 mV right), and compared in the main loop. Only stable detections are allowed to increase the per-region counters thanks to a debouncing scheme with a 100 ms stability window. In order to connect real-time sensing with clear visual feedback, the team also created an LED bar-graph routine and a multiplexed seven-segment driver (direction symbols plus counters).</p>
         
         <p><strong>Team Result:</strong> The system correctly detected 15/15 conductive objects in various combinations of position and distance from magnetic coils during the demonstration. <a href="#" onclick="openPDF('assets/metal-detection/reports/Metal Detector Report (1).pdf', 'Metal Detector Project Report'); return false;">View Report</a></p>
         
